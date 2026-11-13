@@ -68,7 +68,12 @@ export const PerPersonBudgetCalculator: React.FC = () => {
   };
 
   return (
-    <div className="space-y-8 animate-fadeIn">
+    <div className="space-y-8 animate-fadeIn print-statement" data-print-statement="true">
+      <div className="hidden print:block print-report-heading">
+        <h1>UK National Budget Explorer — Illustrative Spending Statement</h1>
+        <p>2024/25 ONS public expenditure · Independent educational illustration</p>
+        <p>Perspective: {perspectiveLabel} · {getTimeframeLabel()} · {perspective === 'resident' ? `${householdSize} resident(s)` : 'One unit'}</p>
+      </div>
       {/* Intro Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 p-6 rounded-2xl bg-slate-900/90 border border-slate-800 shadow-xl">
         <div className="space-y-1">
@@ -152,6 +157,7 @@ export const PerPersonBudgetCalculator: React.FC = () => {
                   </span>
                 </div>
                 <input
+                  aria-label="Number of residents in household"
                   type="range"
                   min="1"
                   max="8"
@@ -244,7 +250,8 @@ export const PerPersonBudgetCalculator: React.FC = () => {
           </div>
           <button
             onClick={() => window.print()}
-            className="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold border border-slate-700 transition-colors flex items-center gap-1.5"
+            aria-label="Print or save the current illustrative spending statement as PDF"
+            className="print-hide "px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold border border-slate-700 transition-colors flex items-center gap-1.5"
           >
             <Download className="w-3.5 h-3.5" />
             <span>Print / Save Statement</span>
