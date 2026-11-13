@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UK National Debt Calculator &amp; Debt Interest Per Second | Budget Explorer</title>
+  <meta name="description" content="Explore the published UK national debt and an interactive illustration of debt interest per second, minute, hour and day. Dated ONS debt figures and OBR 2026/27 forecast, clearly explained." />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://uk-budget-explorer.github.io/national-debt/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="UK National Debt Calculator &amp; Interest Counter" />
+  <meta property="og:description" content="Published ONS national debt alongside an illustrative OBR-based interest counter. Not a real-time UK debt balance." />
+  <meta property="og:url" content="https://uk-budget-explorer.github.io/national-debt/" />
+  <meta name="twitter:card" content="summary" />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebApplication","name":"UK National Debt Calculator and Interest Counter","url":"https://uk-budget-explorer.github.io/national-debt/","applicationCategory":"FinanceApplication","operatingSystem":"Any","isAccessibleForFree":true,"inLanguage":"en-GB","description":"Published UK national debt and an illustrative OBR forecast-based interest counter, not a real-time debt measurement.","isPartOf":{"@type":"WebSite","name":"UK Budget Explorer","url":"https://uk-budget-explorer.github.io/"}}
+  </script>
+  <script>
+    try { const stored=localStorage.getItem('gaConsent'); window.gaConsent=stored==='true'?true:stored==='false'?false:null; } catch(e) {window.gaConsent=null;}
+    if(window.gaConsent){
+      (function(){var g=document.createElement('script');g.async=true;g.src='https://www.googletagmanager.com/gtag/js?id=G-8SP4GE7VJW';document.head.appendChild(g);})();
+      window.dataLayer=window.dataLayer||[];
+      window.gtag=function(){window.dataLayer.push(arguments);};
+      window.gtag('js',new Date());window.gtag('config','G-8SP4GE7VJW',{'anonymize_ip':true});
+    }
+  </script>
+</head>
+<body class="bg-slate-950 text-slate-100 antialiased font-sans min-h-screen">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
+    <header class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-800 pb-5">
+      <a class="text-lg font-bold text-white hover:text-blue-300" href="/">🇬🇧 UK National Budget Explorer</a>
+      <nav aria-label="Site"><a class="text-sm text-blue-300 hover:underline" href="/">Explore all public-finance tools</a></nav>
+    </header>
+    <main class="py-7 space-y-6">
+      <div class="rounded-2xl border border-slate-800 bg-gradient-to-r from-slate-900 via-blue-950 to-slate-900 p-6 sm:p-8">
+        <p class="text-xs uppercase tracking-wide text-blue-300 font-semibold">Independent UK public-finance explorer · Published data and forecasts</p>
+        <h1 class="mt-3 text-3xl sm:text-4xl font-extrabold text-white">UK National Debt Calculator &amp; Debt Interest Counter</h1>
+        <p class="mt-3 text-sm sm:text-base text-slate-200 max-w-3xl leading-relaxed">How large is the UK's published national debt? Explore the Office for National Statistics' latest figure used by this calculator, and see an illustrative estimate of debt-interest costs per second, minute, hour and day based on the Office for Budget Responsibility's 2026/27 forecast.</p>
+        <p class="mt-3 text-sm text-amber-200">Important: the national debt figure is a dated official snapshot. The moving debt-interest counter is a uniform forecast illustration, not a live measurement of government debt or actual interest cash flows.</p>
+      </div>
+      <section aria-label="Interactive national debt calculator">
+        <div id="debt-calculator"><p class="rounded-xl border border-slate-700 p-5 text-slate-300">Loading the interactive national debt and interest calculator…</p></div>
+      </section>
+      <section class="rounded-xl border border-slate-800 bg-slate-900 p-5 space-y-3" aria-labelledby="explained">
+        <h2 id="explained" class="text-xl font-bold text-white">How to interpret these figures</h2>
+        <p class="text-sm text-slate-300">UK public sector net debt excluding public sector banks is a stock measured at the end of a reporting month. The figure displayed above uses the ONS September 2026 provisional estimate. This debt stock is distinct from annual borrowing and from total government expenditure.</p>
+        <p class="text-sm text-slate-300">The OBR 2026/27 forecast for central government debt interest net of the Asset Purchase Facility is spread evenly over 365 days to illustrate an average rate. Actual interest flows vary, and changes in the debt stock involve many factors beyond interest. Do not add the illustration to published debt to claim a real-time total.</p>
+        <p class="text-xs text-slate-400">Financial data last reviewed: 13 November 2026. Sources and reporting vintages are identified below. Estimates are subject to revision.</p>
+      </section>
+      <section class="rounded-xl border border-slate-800 bg-slate-900 p-5 space-y-3" aria-labelledby="sources">
+        <h2 id="sources" class="text-xl font-bold text-white">Sources and definitions</h2>
+        <ul class="list-disc pl-5 text-sm text-slate-300 space-y-2">
+          <li><a class="text-blue-300 underline" href="https://www.ons.gov.uk/economy/governmentpublicsectorandtaxes/publicsectorfinance" target="_blank" rel="noreferrer">Office for National Statistics — Public sector finances</a>: published monthly public sector net debt excluding banks; September 2026 estimate used here.</li>
+          <li><a class="text-blue-300 underline" href="https://obr.uk/" target="_blank" rel="noreferrer">Office for Budget Responsibility — Economic and Fiscal Outlook</a>: October 2026 fiscal outlook, central government debt interest net of APF for 2026/27.</li>
+        </ul>
+      </section>
+      <section class="rounded-xl border border-slate-800 bg-slate-900 p-5 space-y-3" aria-labelledby="faq">
+        <h2 id="faq" class="text-xl font-bold text-white">National debt — common questions</h2>
+        <h3 class="font-semibold text-white">Is the national debt number live?</h3>
+        <p class="text-sm text-slate-300">No. It is the published ONS debt stock for the stated month, not a second-by-second observation.</p>
+        <h3 class="font-semibold text-white">Why does the interest counter move?</h3>
+        <p class="text-sm text-slate-300">It illustrates how a fixed annual OBR forecast translates into an average per second. It is not a tracker of actual payments.</p>
+        <h3 class="font-semibold text-white">How is debt different from borrowing?</h3>
+        <p class="text-sm text-slate-300">Debt is a stock recorded at a point in time. Borrowing is a flow over a period and is not the same thing as debt interest.</p>
+      </section>
+    </main>
+    <footer class="border-t border-slate-800 py-6 text-xs text-slate-400">Independent educational information. <a class="text-blue-300 underline" href="/">Return to UK Budget Explorer</a> · <a class="text-blue-300 underline" href="/privacy.html">Privacy</a></footer>
+  </div>
+  <div id="consent-root"></div>
+  <script type="module" src="/src/nationalDebt.tsx"></script>
+</body>
+</html>
