@@ -106,6 +106,14 @@ export const App: React.FC = () => {
               <ExternalLink className="w-3 h-3" />
             </a>
             <a
+              href="https://github.com/uk-budget-explorer/uk-budget-explorer.github.io/issues"
+              target="_blank"
+              rel="noreferrer"
+              className="text-slate-400 hover:text-white transition-colors"
+            >
+              Report an issue
+            </a>
+            <a
               href="https://obr.uk"
               target="_blank"
               rel="noreferrer"
