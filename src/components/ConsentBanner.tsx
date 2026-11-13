@@ -32,11 +32,10 @@ export const ConsentBanner: React.FC = () => {
       document.head.appendChild(g);
     })();
     (window as any).dataLayer = (window as any).dataLayer || [];
-    function gtag(){ (window as any).dataLayer.push(arguments); }
-    // @ts-ignore
-    gtag('js', new Date());
-    // @ts-ignore
-    gtag('config', 'G-8SP4GE7VJW', { anonymize_ip: true });
+    (window as any).gtag = (...args: any[]) => (window as any).dataLayer.push(args);
+    (window as any)['ga-disable-G-8SP4GE7VJW'] = false;
+    (window as any).gtag('js', new Date());
+    (window as any).gtag('config', 'G-8SP4GE7VJW', { anonymize_ip: true });
   };
 
   const accept = () => {
