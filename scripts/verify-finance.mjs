@@ -85,4 +85,26 @@ const history = UK_HISTORICAL_DATA.find(x=>x.year==='2024/25');
 close(history.borrowing, 149.809);
 close(history.debtAmount, 2806.699);
 
+// Independent internal coherence tests for the IMF October 2026 G20 display.
+// These do not replace matching each value to the IMF's original WEO workbook.
+const g20Source = fs.readFileSync('src/data/g20FiscalData.ts', 'utf8');
+const g20Code = ts.transpileModule(g20Source, {
+  compilerOptions: { target: ts.ScriptTarget.ES2020, module: ts.ModuleKind.CommonJS }
+}).outputText;
+const g20Sandbox = { exports: {} };
+vm.runInNewContext(g20Code, g20Sandbox, { timeout: 5000 });
+const g20 = g20Sandbox.exports.g20FiscalData;
+assert.equal(g20.length, 19, 'G20 should list 19 national members only');
+assert.equal(new Set(g20.map(row => row.code)).size, 19, 'G20 country codes must be distinct');
+assert.ok(g20.some(row => row.code === 'GBR'), 'G20 includes the UK');
+for (const row of g20) {
+  for (const key of ['debt', 'spending', 'revenue', 'balance']) {
+    assert.ok(Number.isFinite(row[key]), 'G20 ' + row.code + ' ' + key + ' is finite');
+  }
+  assert.ok(row.debt >= 0 && row.spending >= 0 && row.revenue >= 0,
+    'G20 stock/flow ratios must not be negative: ' + row.code);
+  close(row.revenue - row.spending, row.balance, 0.002);
+}
+console.log('PASS: IMF G20 national-member count, unique country identifiers and fiscal-balance arithmetic. IMF source-by-source comparison remains an editorial check.');
+
 console.log('PASS: ONS/OBR/HMT/HMRC reconciliations, 15 annual Treasury category splits, historical outturns and demographics.');
