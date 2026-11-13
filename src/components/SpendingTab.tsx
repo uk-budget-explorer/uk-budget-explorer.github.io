@@ -24,7 +24,6 @@ export const SpendingTab: React.FC<SpendingTabProps> = ({ selectedItem, setSelec
   const [searchTerm, setSearchTerm] = useState('');
   const [categoryFilter, setCategoryFilter] = useState<string>('All');
   const [delAmeFilter, setDelAmeFilter] = useState<'All' | 'DEL' | 'AME'>('All');
-  const [expandedId, setExpandedId] = useState<string | null>(null);
 
   const categories = ['All', 'Public Services', 'Welfare & Benefits', 'Infrastructure', 'Economy', 'Administration', 'Environment'];
 
@@ -41,10 +40,6 @@ export const SpendingTab: React.FC<SpendingTabProps> = ({ selectedItem, setSelec
   });
 
   const totalFilteredAmount = filteredItems.reduce((acc, curr) => acc + curr.amount, 0);
-
-  const toggleExpand = (id: string) => {
-    setExpandedId(prev => (prev === id ? null : id));
-  };
 
   return (
     <div className="space-y-6 animate-fadeIn">
@@ -128,7 +123,6 @@ export const SpendingTab: React.FC<SpendingTabProps> = ({ selectedItem, setSelec
       {/* Spending Sectors List */}
       <div className="space-y-4">
         {filteredItems.map((item) => {
-          const isExpanded = expandedId === item.id;
           return (
             <div
               key={item.id}
@@ -136,8 +130,7 @@ export const SpendingTab: React.FC<SpendingTabProps> = ({ selectedItem, setSelec
             >
               {/* Primary Card Row */}
               <div 
-                className="p-5 cursor-pointer flex flex-col md:flex-row md:items-center justify-between gap-4"
-                onClick={() => toggleExpand(item.id)}
+                className="p-5 flex flex-col md:flex-row md:items-center justify-between gap-4"
               >
                 {/* Left: Icon, Name & Category */}
                 <div className="flex items-start gap-4">
@@ -189,10 +182,12 @@ export const SpendingTab: React.FC<SpendingTabProps> = ({ selectedItem, setSelec
                   </div>
 
                   <button
-                    className="p-2 rounded-lg bg-slate-800 text-slate-300 hover:bg-slate-700 transition-colors"
-                    aria-label={isExpanded ? 'Collapse' : 'Expand'}
+                    type="button"
+                    onClick={() => setSelectedItem(item)}
+                    className="px-3 py-2 rounded-lg bg-slate-800 text-slate-200 hover:bg-slate-700 text-xs font-medium shrink-0"
+                    aria-label={`View source and context for ${item.name}`}
                   >
-                    {isExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+                    View context
                   </button>
                 </div>
               </div>
@@ -205,78 +200,6 @@ export const SpendingTab: React.FC<SpendingTabProps> = ({ selectedItem, setSelec
                 />
               </div>
 
-              {/* Expanded Breakdown Drawer */}
-              {isExpanded && (
-                <div className="p-5 bg-slate-950/80 border-t border-slate-800/80 space-y-5 animate-fadeIn">
-                  {/* Sub-item breakdowns */}
-                  <div>
-                    <h4 className="text-xs uppercase font-bold tracking-wider text-slate-400 mb-3 flex items-center gap-2">
-                      <Sparkles className="w-3.5 h-3.5 text-blue-400" />
-                      Sub-programme breakdown
-                    </h4>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                      {item.breakdown.length === 0 && <p className="text-xs text-slate-400">Official programme-level allocations are not available in this dataset. No estimated amounts are presented.</p>}
-                      {item.breakdown.map((sub, idx) => (
-                        <div
-                          key={idx}
-                          className="p-3.5 rounded-lg bg-slate-900 border border-slate-800/80 flex flex-col justify-between"
-                        >
-                          <div>
-                            <div className="flex items-center justify-between">
-                              <span className="text-xs font-semibold text-slate-200">{sub.name}</span>
-                              <span className="text-xs font-bold text-white bg-slate-800 px-2 py-0.5 rounded border border-slate-700">
-                                £{sub.amount.toFixed(1)}bn
-                              </span>
-                            </div>
-                            <p className="mt-1.5 text-[11px] text-slate-400 leading-relaxed">
-                              {sub.description}
-                            </p>
-                          </div>
-                          {/* Mini share of this sector */}
-                          <div className="mt-2.5 flex items-center gap-2 text-[10px] text-slate-500">
-                            <div className="flex-1 h-1 bg-slate-800 rounded-full overflow-hidden">
-                              <div
-                                className="h-full rounded-full"
-                                style={{
-                                  width: `${(sub.amount / item.amount) * 100}%`,
-                                  backgroundColor: item.color
-                                }}
-                              />
-                            </div>
-                            <span>{((sub.amount / item.amount) * 100).toFixed(0)}% of sector</span>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Key policy facts */}
-                  <div className="p-4 rounded-lg bg-blue-950/20 border border-blue-900/40 space-y-2">
-                    <h4 className="text-xs font-bold text-blue-300 uppercase tracking-wide">
-                      Key Policy & Economic Insights:
-                    </h4>
-                    <ul className="space-y-1.5 text-xs text-slate-300">
-                      {item.keyFacts.map((fact, fIdx) => (
-                        <li key={fIdx} className="flex items-start gap-2">
-                          <span className="text-blue-400 mt-1">•</span>
-                          <span>{fact}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  {/* Action row */}
-                  <div className="flex justify-end gap-3 pt-2">
-                    <button
-                      onClick={() => setSelectedItem(item)}
-                      className="px-3 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-white text-xs font-medium transition-colors flex items-center gap-1.5"
-                    >
-                      <span>Deep Dive Modal View</span>
-                      <ArrowRight className="w-3.5 h-3.5" />
-                    </button>
-                  </div>
-                </div>
-              )}
             </div>
           );
         })}
