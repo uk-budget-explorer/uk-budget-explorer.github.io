@@ -449,7 +449,7 @@ export const SectorGrowthLineGraph: React.FC = () => {
 
           {/* Interactive Inspection HUD */}
           {activeHoverIndex !== null && (
-            <div className="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-3 animate-fadeIn" role="region" aria-label="Selected fiscal year spending">
+            <div className="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-3 animate-fadeIn" role="region" aria-label="Selected fiscal year spending" aria-live="polite" aria-atomic="true">
               <div className="flex items-center justify-between border-b border-slate-800 pb-2">
                 <div className="flex items-center gap-2">
                   <span className="text-sm font-bold text-white">
