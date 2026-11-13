@@ -1,0 +1,22 @@
+name: Financial accuracy release gate
+on:
+  push:
+    branches:
+      - audit/financial-accuracy-2026-11-12
+  pull_request:
+    branches:
+      - main
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - run: node scripts/verify-finance.mjs

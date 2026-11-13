@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://uk-budget-explorer.github.io/sitemap.xml
+

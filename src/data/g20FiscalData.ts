@@ -1,0 +1,22 @@
+// IMF World Economic Outlook, October 2026. All indicators are percentages of GDP.
+export const g20FiscalData = [
+  { code: 'ARG', name: 'Argentina', debt: 69.349, spending: 30.462, revenue: 30.873, balance: 0.411 },
+  { code: 'AUS', name: 'Australia', debt: 52.626, spending: 39.76, revenue: 36.555, balance: -3.204 },
+  { code: 'BRA', name: 'Brazil', debt: 97.01, spending: 48.664, revenue: 40.545, balance: -8.119 },
+  { code: 'CAN', name: 'Canada', debt: 115.571, spending: 44.576, revenue: 42.089, balance: -2.487 },
+  { code: 'CHN', name: 'China', debt: 104.369, spending: 32.37, revenue: 24.329, balance: -8.042 },
+  { code: 'FRA', name: 'France', debt: 118.458, spending: 57.713, revenue: 52.361, balance: -5.352 },
+  { code: 'DEU', name: 'Germany', debt: 64.564, spending: 51.205, revenue: 46.902, balance: -4.304 },
+  { code: 'IND', name: 'India', debt: 83.079, spending: 28.497, revenue: 20.992, balance: -7.506 },
+  { code: 'IDN', name: 'Indonesia', debt: 41.698, spending: 16.862, revenue: 13.963, balance: -2.898 },
+  { code: 'ITA', name: 'Italy', debt: 137.866, spending: 50.713, revenue: 47.808, balance: -2.905 },
+  { code: 'JPN', name: 'Japan', debt: 199.369, spending: 37.446, revenue: 36.003, balance: -1.443 },
+  { code: 'KOR', name: 'South Korea', debt: 47.291, spending: 35.463, revenue: 34.161, balance: -1.303 },
+  { code: 'MEX', name: 'Mexico', debt: 62.094, spending: 29.117, revenue: 24.888, balance: -4.229 },
+  { code: 'RUS', name: 'Russia', debt: 19.309, spending: 39.248, revenue: 36.075, balance: -3.173 },
+  { code: 'SAU', name: 'Saudi Arabia', debt: 35.439, spending: 28.269, revenue: 21.792, balance: -6.476 },
+  { code: 'ZAF', name: 'South Africa', debt: 78.044, spending: 33.133, revenue: 28.757, balance: -4.376 },
+  { code: 'TUR', name: 'Türkiye', debt: 22.45, spending: 32.594, revenue: 29.456, balance: -3.138 },
+  { code: 'GBR', name: 'United Kingdom', debt: 101.975, spending: 43.46, revenue: 39.685, balance: -3.775 },
+  { code: 'USA', name: 'United States', debt: 126.79, spending: 38.24, revenue: 29.695, balance: -8.544 },
+];
