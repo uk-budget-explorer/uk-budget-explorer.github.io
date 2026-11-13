@@ -225,7 +225,7 @@ export const PerPersonBudgetCalculator: React.FC = () => {
             For a family of four, an equal-share illustration equals <strong className="text-white">£{(UK_FISCAL_TOTALS.totalSpending * 4000 / UK_FISCAL_TOTALS.population).toLocaleString('en-GB',{minimumFractionDigits:2,maximumFractionDigits:2})}</strong> in annual expenditure.
           </div>
           <div className="text-[11px] text-slate-400 font-mono shrink-0">
-            = £{formatCurrency(effectiveCost)} ({getTimeframeLabel()})
+            = {formatCurrency(effectiveCost)} ({getTimeframeLabel()})
           </div>
         </div>
       </div>
