@@ -8,9 +8,8 @@ export const trackEvent = (
 ) => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const consent = (window as any).gaConsent;
-  // @ts-ignore - gtag is injected globally when consented
-  if (consent && typeof gtag === "function") {
-    // @ts-ignore
+  const gtag = (window as any).gtag;
+  if (consent === true && typeof gtag === "function") {
     gtag("event", name, params);
   }
 };
