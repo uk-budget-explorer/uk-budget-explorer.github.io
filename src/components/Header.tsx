@@ -79,11 +79,11 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab, onOpenA
                   UK National Budget Explorer
                 </h1>
                 <span className="text-[10px] uppercase font-semibold tracking-wider bg-blue-500/10 text-blue-400 px-2 py-0.5 rounded-full border border-blue-500/20">
-                  OBR Baseline
+                  Official data
                 </span>
               </div>
               <p className="text-xs text-slate-400 hidden sm:block">
-                Interactive HM Treasury Public Finances, Public Spending & Policy Simulator
+                Independent explorer of UK public finances, spending & policy scenarios
               </p>
             </div>
           </div>
