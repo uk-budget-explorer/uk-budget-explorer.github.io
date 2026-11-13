@@ -36,6 +36,13 @@ jobs:
       - name: Verify financial reconciliations
         run: node scripts/verify-finance.mjs
 
+      - name: Verify debt landing page and sitemap artifact
+        run: |
+          test -s dist/national-debt/index.html
+          grep -q 'UK National Debt Calculator' dist/national-debt/index.html
+          grep -q 'https://uk-budget-explorer.github.io/national-debt/' dist/sitemap.xml
+          grep -q 'national-debt/' dist/index.html || grep -q 'national-debt/' dist/assets/*.js
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
