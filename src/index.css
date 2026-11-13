@@ -31,7 +31,7 @@
   html, body, #root { background: #fff !important; color: #111827 !important; height: auto !important; }
   body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   #root * { visibility: hidden !important; }
-  .print-statement, .print-statement * { visibility: visible !important; }
+  #root .print-statement, #root .print-statement * { visibility: visible !important; }
   .print-statement { position: absolute !important; top: 0; left: 0; width: 100% !important; margin: 0 !important; padding: 0 !important; color: #111827 !important; }
   .print-statement .print-hide, .print-statement .print-hide * { display: none !important; }
   .print-statement .print-report-heading { display: block !important; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #aaa; }
