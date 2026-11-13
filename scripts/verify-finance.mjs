@@ -11,7 +11,7 @@ const sandbox = { exports: {}, console };
 vm.runInNewContext(output, sandbox, { timeout: 5000 });
 const {
   UK_FISCAL_TOTALS, UK_SPENDING_DATA, UK_REVENUE_DATA, HMRC_REVENUE_TOTAL_2024_25, HMRC_REVENUE_TOTAL_2025_26,
-  LATEST_ONS_NET_DEBT, DEBT_INTEREST_METRICS,
+  LATEST_ONS_NET_DEBT, DEBT_INTEREST_METRICS, estimateDebtWithInterest,
   UK_HISTORICAL_DATA, YEARLY_SPENDING_SPLITS, YEARLY_REVENUE_SPLITS
 } = sandbox.exports;
 
@@ -29,6 +29,15 @@ close(UK_FISCAL_TOTALS.population, 69.2563);
 close(UK_FISCAL_TOTALS.taxPayingAdults, 38.6);
 close(DEBT_INTEREST_METRICS.annualAmount, 123900000000);
 close(DEBT_INTEREST_METRICS.perSecond, DEBT_INTEREST_METRICS.annualAmount / 31536000, 0.00001);
+
+const interestStart = Date.parse('2026-10-01T00:00:00+01:00');
+const forecastEnd = Date.parse('2027-04-01T00:00:00+01:00');
+const baseline = LATEST_ONS_NET_DEBT.amount;
+close(estimateDebtWithInterest(interestStart - 1000).total, baseline);
+const afterDay = estimateDebtWithInterest(interestStart + 86_400_000);
+close(afterDay.interest, Math.round(DEBT_INTEREST_METRICS.perDay));
+close(afterDay.total, baseline + afterDay.interest);
+close(estimateDebtWithInterest(forecastEnd + 86_400_000).total, estimateDebtWithInterest(forecastEnd).total);
 
 assert.equal(YEARLY_REVENUE_SPLITS.length,5,'HMRC official tax history has five sourced years');
 for(const row of YEARLY_REVENUE_SPLITS){

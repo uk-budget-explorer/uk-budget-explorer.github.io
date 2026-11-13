@@ -1,12 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Activity, Clock, Coins, Flame, TrendingUp } from 'lucide-react';
-import { DEBT_INTEREST_METRICS, LATEST_ONS_NET_DEBT } from '../data/ukBudgetData';
+import { DEBT_INTEREST_METRICS, LATEST_ONS_NET_DEBT, estimateDebtWithInterest } from '../data/ukBudgetData';
 
 interface DebtInterestTickerProps {
   variant?: 'full' | 'compact' | 'mini';
 }
 
 export const DebtInterestTicker: React.FC<DebtInterestTickerProps> = ({ variant = 'full' }) => {
+  const [debtEstimate, setDebtEstimate] = useState(() => estimateDebtWithInterest(Date.now()));
   const startTimeRef = useRef<number>(Date.now());
   const [sessionInterest, setSessionInterest] = useState<number>(0);
   const [todayInterest, setTodayInterest] = useState<number>(0);
@@ -14,6 +15,7 @@ export const DebtInterestTicker: React.FC<DebtInterestTickerProps> = ({ variant 
   useEffect(() => {
     const updateInterest = () => {
       const now = Date.now();
+      setDebtEstimate(estimateDebtWithInterest(now));
       const elapsedSeconds = Math.max(0, (now - startTimeRef.current) / 1000);
       setSessionInterest(elapsedSeconds * DEBT_INTEREST_METRICS.perSecond);
 
@@ -47,14 +49,13 @@ export const DebtInterestTicker: React.FC<DebtInterestTickerProps> = ({ variant 
   // Mini variant for sticky header
   if (variant === 'mini') {
     return (
-      <div className="flex items-center gap-2 px-2.5 py-1 rounded-lg bg-red-950/40 border border-red-500/30 text-xs font-mono">
+      <div className="flex items-center gap-x-2 gap-y-1 flex-wrap px-2.5 py-1 rounded-lg bg-red-950/40 border border-red-500/30 text-xs font-mono">
         <span className="flex h-2 w-2 relative">
           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
           <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
         </span>
-        <span className="text-slate-400 font-sans text-[11px] hidden sm:inline">ONS net debt:</span>
-        <span className="text-red-400 font-bold">£{netDebtBillions}bn</span>
-        <span className="text-slate-500 text-[10px]">({LATEST_ONS_NET_DEBT.date}, provisional)</span>
+        <span className="whitespace-nowrap text-slate-300">Illustrative total debt <strong className="text-red-400">£{formatPounds(debtEstimate.total, 0)}</strong></span>
+        <span className="whitespace-nowrap text-slate-300">Estimated interest added <strong className="text-amber-400">£{formatPounds(debtEstimate.interest, 0)}</strong></span>
       </div>
     );
   }
@@ -124,6 +125,21 @@ export const DebtInterestTicker: React.FC<DebtInterestTickerProps> = ({ variant 
             +£{DEBT_INTEREST_METRICS.perSecond.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} / sec
           </span>
         </div>
+      </div>
+
+      <div className="grid gap-3 sm:grid-cols-2">
+        <div className="min-w-0 rounded-xl border border-red-900/40 bg-slate-950 p-4">
+          <p className="text-sm text-slate-300">Illustrative total debt</p>
+          <p className="break-words font-mono text-lg font-bold text-red-400">£{formatPounds(debtEstimate.total, 0)}</p>
+        </div>
+        <div className="min-w-0 rounded-xl border border-slate-800 bg-slate-950 p-4">
+          <p className="text-sm text-slate-300">Estimated interest added</p>
+          <p className="break-words font-mono text-lg font-bold text-amber-400">£{formatPounds(debtEstimate.interest, 0)}</p>
+        </div>
+        <p className="text-xs text-slate-300 sm:col-span-2">
+          The total adds estimated interest since the end of {LATEST_ONS_NET_DEBT.date} to the published ONS debt figure.
+          This illustration holds all other changes in debt constant and stops adding interest at the end of the 2026/27 forecast year.
+        </p>
       </div>
 
       {/* Primary Counters Grid */}

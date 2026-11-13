@@ -36,7 +36,7 @@
 3. **Yearly revenue composition: WITHHELD.** An older revenue-versus-borrowing chart conflates HMRC receipts and ONS public borrowing. Revenue tax cards are now based on separately reconciled HMRC 2024/25 figures, and Treasury expenditure-history split charts are restored using Table 9.
 4. **Macroeconomic history: WITHHELD.** Inflation, Bank Rate and nominal GDP need an independently checked harmonised source series. Fields in legacy data are not presented to visitors.
 5. **Subprogramme allocations: WITHHELD.** No invented split amounts. The official ten Treasury COFOG functions remain available.
-6. **Debt interest ticker: ILLUSTRATION.** The ticker spreads the OBR 2026/27 forecast across a 365-day financial year. The September 2026 ONS debt stock is displayed separately as a dated, provisional figure. The illustrative daily counter resets at midnight in Europe/London.
+6. **Debt interest ticker: ILLUSTRATION.** The ticker spreads the OBR 2026/27 forecast across a 365-day financial year. The September 2026 ONS debt stock is displayed separately as a dated, provisional figure. The two running figures show forecast interest since the ONS snapshot and the sum of that interest and the snapshot. Other changes in debt are held constant. The running figures stop increasing at the end of the forecast year. The daily interest counter resets at midnight in Europe/London.
 
 ## Build and release requirements
 

@@ -273,6 +273,7 @@ export const YEARLY_REVENUE_SPLITS: YearlyRevenueSplit[] = [
 export const LATEST_ONS_NET_DEBT = {
   amount: 3_005_000_000_000,
   date: 'September 2026',
+  interestStart: Date.parse('2026-10-01T00:00:00+01:00'),
   percentGdp: 94.0,
 };
 
@@ -285,3 +286,11 @@ export const DEBT_INTEREST_METRICS = {
   perHour: annualDebtInterest / (365 * 24),
   perDay: annualDebtInterest / 365,
 };
+
+// Add forecast interest only within the financial year covered by the forecast.
+export function estimateDebtWithInterest(now: number) {
+  const forecastEnd = Date.parse('2027-04-01T00:00:00+01:00');
+  const elapsedSeconds = Math.max(0, Math.min(now, forecastEnd) - LATEST_ONS_NET_DEBT.interestStart) / 1000;
+  const interest = Math.round(elapsedSeconds * DEBT_INTEREST_METRICS.perSecond);
+  return { interest, total: LATEST_ONS_NET_DEBT.amount + interest };
+}
