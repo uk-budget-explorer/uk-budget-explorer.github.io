@@ -55,7 +55,7 @@ export const AboutModal: React.FC<AboutModalProps> = ({ isOpen, onClose }) => {
               <li className="p-3 rounded-lg bg-slate-950 border border-slate-800 flex items-start justify-between gap-3">
                 <div>
                   <strong className="text-white block text-xs">HM Treasury (HMT)</strong>
-                  <span className="text-[11px] text-slate-400">Public Spending Statistics, May 2026, Table 9: 2024/25 functional spending and annually reconciled 2010/11–2024/25 expenditure-on-services series.</span>
+                  <span className="text-[11px] text-slate-400">Historical 2024/25 functional spending uses Public Spending Statistics, May 2026, Table 9, and the 2010/11–2024/25 expenditure-on-services series. A newer July 2026 release contains revised history and first 2025/26 outturn; it has not yet been fully reconciled into these historical charts.</span>
                 </div>
                 <a href="https://www.gov.uk/government/organisations/hm-treasury" target="_blank" rel="noreferrer" className="text-blue-400 hover:text-blue-300 shrink-0">
                   <ExternalLink className="w-4 h-4" />
