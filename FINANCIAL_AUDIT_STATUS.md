@@ -62,3 +62,13 @@
 - The public sitemap and robots.txt target the dedicated GitHub Pages address. Search Console property ownership and indexing remain unverified.
 - ONS September 2026 public-sector net debt of £3,005.0bn (94.0% of GDP) was checked against the September 2026 ONS release; OBR £123.9bn interest forecast was checked against the October 2026 EFO. Other values retain the source audit described above, not a universal recheck.
 - No claim is made that build success alone certifies responsive appearance, accessibility, privacy compliance or the accuracy of every historical / G20 item.
+
+
+## Subsequent Treasury publication review — 13 November 2026
+
+- HM Treasury issued Public Spending Statistics July 2026 on 16 July 2026, updated 29 July 2026: https://www.gov.uk/government/statistics/public-spending-statistics-release-july-2026
+- The July release contains first 2025/26 outturn and revisions to earlier years, including the same 2024/25 period displayed in the historical functional-spending charts. The May 2026 functional values are a correctly identified older publication vintage, not the latest HMT series.
+- The July release states that 2025/26 nominal spending increased in all ten COFOG functions and that social protection rose by £21.0bn, health by £15.1bn and economic affairs by £6.0bn. These are year-on-year changes within the July dataset and MUST NOT be added to the earlier May 2026 level values.
+- The July release's 2024/25 Total Managed Expenditure revision of +£4,796m is relative to July 2025, **not** the May 2026 site baseline. Do not apply it to the site's 2024/25 figures without an exact comparable source-date reconciliation.
+- **Editorial gate:** Before updating site figures, compare the July source workbook's nominal Table 4.2 or 5.4 functional amounts, revised 2024/25 totals and 2025/26 outturn with the May Table 9 entries on matched periods and definitions; recalculate shares and historical charts together, and preserve ONS/HMRC/OBR metric separation. This source-by-source numerical reconciliation remains OPEN.
+- Daily UK Budget Data Change Watch monitors ONS, HMRC, HMT and OBR official releases and flags consequential changes; it does not automatically deploy updates.
