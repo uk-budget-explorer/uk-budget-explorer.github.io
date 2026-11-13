@@ -47,3 +47,79 @@
   #root .print-statement button, #root .print-statement input { display: none !important; }
   body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 }
+
+/* Readable paper-only layouts for the explanatory note and Treasury function rows. */
+@media print {
+  #root .print-statement .print-explanation,
+  #root .print-statement .print-explanation * {
+    color: #111827 !important;
+    background: #fff !important;
+    opacity: 1 !important;
+  }
+  #root .print-statement .print-sector-card {
+    display: block !important;
+    border: 1px solid #bbb !important;
+    overflow: visible !important;
+    margin: 0 0 4mm !important;
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+    border-radius: 2mm !important;
+  }
+  #root .print-statement .print-sector-main {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) 47mm !important;
+    align-items: start !important;
+    gap: 5mm !important;
+    padding: 3mm 4mm !important;
+  }
+  #root .print-statement .print-sector-identity {
+    display: block !important;
+    min-width: 0 !important;
+  }
+  #root .print-statement .print-sector-identity > div:first-child {
+    display: none !important;
+  }
+  #root .print-statement .print-sector-identity p {
+    display: block !important;
+    overflow: visible !important;
+    white-space: normal !important;
+    text-overflow: clip !important;
+    line-height: 1.35 !important;
+    margin-top: 1mm !important;
+    font-size: 9pt !important;
+  }
+  #root .print-statement .print-sector-value {
+    display: block !important;
+    min-width: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    text-align: right !important;
+  }
+  #root .print-statement .print-sector-value > div,
+  #root .print-statement .print-sector-value > div > div {
+    display: block !important;
+    text-align: right !important;
+  }
+  #root .print-statement .print-sector-value .font-mono {
+    font-size: 12pt !important;
+    font-weight: 700 !important;
+    white-space: nowrap !important;
+  }
+  #root .print-statement .print-sector-value span {
+    display: block !important;
+    font-size: 8pt !important;
+    line-height: 1.3 !important;
+    color: #374151 !important;
+    white-space: normal !important;
+  }
+  #root .print-statement .print-sector-card > .h-1\\.5 {
+    display: none !important;
+  }
+  #root .print-statement .print-sector-card .line-clamp-1 {
+    -webkit-line-clamp: unset !important;
+    display: block !important;
+  }
+  #root .print-statement .print-sector-card .text-slate-500 {
+    color: #374151 !important;
+  }
+}
