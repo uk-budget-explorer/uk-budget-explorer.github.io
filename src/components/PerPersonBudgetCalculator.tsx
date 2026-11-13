@@ -6,7 +6,6 @@ import {
   Clock, 
   Home, 
   Briefcase, 
-  Download, 
   ChevronDown, 
   ChevronUp, 
   Sparkles, 
@@ -68,12 +67,7 @@ export const PerPersonBudgetCalculator: React.FC = () => {
   };
 
   return (
-    <div className="space-y-8 animate-fadeIn print-statement" data-print-statement="true">
-      <div className="hidden print:block print-report-heading">
-        <h1>UK National Budget Explorer — Illustrative Spending Statement</h1>
-        <p>2024/25 ONS public expenditure · Independent educational illustration</p>
-        <p>Perspective: {perspectiveLabel} · {getTimeframeLabel()} · {perspective === 'resident' ? `${householdSize} resident(s)` : 'One unit'}</p>
-      </div>
+    <div className="space-y-8 animate-fadeIn">
       {/* Intro Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 p-6 rounded-2xl bg-slate-900/90 border border-slate-800 shadow-xl">
         <div className="space-y-1">
@@ -105,7 +99,7 @@ export const PerPersonBudgetCalculator: React.FC = () => {
       </div>
 
       {/* Control Panel: Perspective + Household Size + Timeframe */}
-      <div className="print-hide p-6 rounded-2xl bg-slate-900 border border-slate-800 shadow-xl space-y-6">
+      <div className="p-6 rounded-2xl bg-slate-900 border border-slate-800 shadow-xl space-y-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* 1. Perspective Switcher */}
           <div className="space-y-2">
@@ -230,37 +224,15 @@ export const PerPersonBudgetCalculator: React.FC = () => {
         </div>
       </div>
 
-      <p className="print-explanation rounded-xl border border-amber-700/50 bg-amber-950/20 p-4 text-xs text-amber-100 leading-relaxed">
+      <p className="rounded-xl border border-amber-700/50 bg-amber-950/20 p-4 text-xs text-amber-100 leading-relaxed">
         Treasury's ten expenditure functions total £1,167.6bn before EU transactions in 2024/25,
         whereas the ONS Total Managed Expenditure measure used for the headline per-person figure is
         £1,290.348bn. The distinction reflects expenditure-on-services versus TME, accounting adjustments
         and data vintages. The function cards do not purport to allocate every pound of TME.
         Per-person values are arithmetical averages, not entitlements or actual individual usage.
       </p>
-      {/* Print uses a compact semantic table rather than interactive screen cards. */}
-      <section className="print-only-summary" aria-label="Printed Treasury expenditure summary">
-        <h2>Treasury Expenditure by Function — 2024/25</h2>
-        <p>Illustrative expenditure {perspectiveLabel.toLowerCase()} {getTimeframeLabel().toLowerCase()}; amounts are averages, not individual entitlements.</p>
-        <table>
-          <thead><tr><th scope="col">Treasury function</th><th scope="col">Total UK spending</th><th scope="col">Illustrative share</th></tr></thead>
-          <tbody>
-            {UK_SPENDING_DATA.map(sector => {
-              const perUnit = sector.amount * 1_000_000_000 / divisor;
-              const amount = perspective === 'resident' ? perUnit * householdSize : perUnit;
-              return (
-                <tr key={sector.id}>
-                  <th scope="row"><strong>{sector.name}</strong><span>{sector.description}</span></th>
-                  <td>£{sector.amount.toFixed(1)}bn</td>
-                  <td>{formatCurrency(amount)}</td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-        <p>Source: HM Treasury Public Spending Statistics, May 2026, Table 9. Functional spending totals do not equal ONS Total Managed Expenditure.</p>
-      </section>
       {/* Itemized Sector Split Table / Cards */}
-      <div className="space-y-4 print-hide">
+      <div className="space-y-4">
         <div className="flex items-center justify-between">
           <div>
             <h3 className="text-lg font-bold text-white">
@@ -270,14 +242,7 @@ export const PerPersonBudgetCalculator: React.FC = () => {
               Illustrative expenditure {perspectiveLabel.toLowerCase()} {getTimeframeLabel().toLowerCase()}; not the value of services actually used
             </p>
           </div>
-          <button
-            onClick={() => window.print()}
-            aria-label="Print or save the current illustrative spending statement as PDF"
-            className="print-hide px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold border border-slate-700 transition-colors flex items-center gap-1.5"
-          >
-            <Download className="w-3.5 h-3.5" />
-            <span>Print / Save Statement</span>
-          </button>
+
         </div>
 
         <div className="space-y-3">
@@ -290,15 +255,15 @@ export const PerPersonBudgetCalculator: React.FC = () => {
             return (
               <div
                 key={sector.id}
-                className="print-sector-card rounded-xl bg-slate-900 border border-slate-800 overflow-hidden hover:border-slate-700 transition-all shadow-md"
+                className="rounded-xl bg-slate-900 border border-slate-800 overflow-hidden hover:border-slate-700 transition-all shadow-md"
               >
                 {/* Sector Primary Row */}
                 <div
-                  className="print-sector-main p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 cursor-pointer"
+                  className="p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 cursor-pointer"
                   onClick={() => toggleSector(sector.id)}
                 >
                   {/* Left: Icon, Name, Category */}
-                  <div className="print-sector-identity flex items-center gap-4">
+                  <div className="flex items-center gap-4">
                     <div
                       className="w-11 h-11 rounded-xl flex items-center justify-center text-white shrink-0 shadow-md"
                       style={{ backgroundColor: `${sector.color}25`, color: sector.color }}
@@ -321,7 +286,7 @@ export const PerPersonBudgetCalculator: React.FC = () => {
                   </div>
 
                   {/* Right: Per Person Amount & Percentage */}
-                  <div className="print-sector-value flex items-center justify-between sm:justify-end gap-6 border-t sm:border-t-0 pt-3 sm:pt-0 border-slate-800">
+                  <div className="flex items-center justify-between sm:justify-end gap-6 border-t sm:border-t-0 pt-3 sm:pt-0 border-slate-800">
                     <div className="text-left sm:text-right">
                       <div className="text-lg sm:text-xl font-black text-white font-mono">
                         {formatCurrency(itemCost)}
