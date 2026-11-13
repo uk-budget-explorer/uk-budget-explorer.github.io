@@ -1,8 +1,8 @@
 # UK Budget Explorer — Financial audit and release gate
 
 **Review date:** 13 November 2026  
-**Branch:** `audit/financial-accuracy-2026-11-12`  
-**Release status:** **NOT APPROVED FOR MARKETING OR MERGE**  
+**Production branch:** `main`  
+**Release status:** **PUBLICLY DEPLOYED; BROAD PROMOTION PENDING FINAL BROWSER/PRINT AND SEARCH CONSOLE VERIFICATION**  
 **Design:** Original React/Vite website retained; no visual redesign.
 
 ## Verified metrics and definitions
@@ -36,11 +36,11 @@
 3. **Yearly revenue composition: WITHHELD.** An older revenue-versus-borrowing chart conflates HMRC receipts and ONS public borrowing. Revenue tax cards are now based on separately reconciled HMRC 2024/25 figures, and Treasury expenditure-history split charts are restored using Table 9.
 4. **Macroeconomic history: WITHHELD.** Inflation, Bank Rate and nominal GDP need an independently checked harmonised source series. Fields in legacy data are not presented to visitors.
 5. **Subprogramme allocations: WITHHELD.** No invented split amounts. The official ten Treasury COFOG functions remain available.
-6. **Debt interest ticker: ILLUSTRATION.** The ticker spreads the OBR 2026/27 forecast across a 365-day financial year. The September 2026 ONS debt stock is displayed separately as a dated, provisional figure. The two running figures show forecast interest since the ONS snapshot and the sum of that interest and the snapshot. Other changes in debt are held constant. The running figures stop increasing at the end of the forecast year. The daily interest counter resets at midnight in Europe/London.
+6. **Debt interest ticker: ILLUSTRATION.** The ticker spreads the OBR 2026/27 forecast across a 365-day financial year. The September 2026 ONS debt stock is displayed separately as a dated, provisional figure. The animated figures show illustrative cumulative forecast interest from 1 October 2026 and an illustrative per-day total. The ONS published debt stock stays static; a synthetic live debt total is not displayed. The running figures stop increasing at the end of the forecast year. The daily interest counter resets at midnight in Europe/London.
 
 ## Build and release requirements
 
-- GitHub Actions runs `npm ci`, `npm run build` and `node scripts/verify-finance.mjs` on the audit branch and on a pull request to main.
+- The production Pages deployment now runs `npm ci`, `npm run build` and `node scripts/verify-finance.mjs` on every push to main. The separate audit workflow remains for pull requests and the audit branch.
 - Source-based numerical tests must pass; Treasury annual spending splits, HMRC 2024/25 tax groups, ONS annual accounts identity and OBR interest denominators are checked.
 - **The CI test suite does not prove that every qualitative statement or external source is correct.** A separate editorial review, accessibility and responsive-layout/browser QA, privacy and analytics consent review and broken-link check are still required.
 - Check source definitions, dates, units and signs before publishing changes to fiscal figures.
@@ -51,3 +51,14 @@
 - Treat ONS public-finance outturn, Treasury TES functions, HMRC tax receipts and OBR debt-interest forecast as four **distinct measures**.
 - Do not alter data until sources and period definitions are recorded.
 - Do not infer a cash-flow identity by combining unrelated expenditure, tax revenue and borrowing definitions.
+
+
+## Publication hardening — 13 November 2026
+
+- The dedicated organisation site is published at https://uk-budget-explorer.github.io/ and GitHub Pages deployment has succeeded for ticker correction commit `57ff90cd`.
+- Added a site-wide analytics consent banner, previously imported but not rendered. Analytics should remain unloaded on first visit until acceptance; live network verification remains required.
+- Added A4 print-only styling, print statement metadata and an accessible household-size control label. Actual PDF output still requires inspection in a browser.
+- Added assistive technology announcements to the fiscal-year selector and keyboard activation of historical bars; actual screen-reader testing remains required.
+- The public sitemap and robots.txt target the dedicated GitHub Pages address. Search Console property ownership and indexing remain unverified.
+- ONS September 2026 public-sector net debt of £3,005.0bn (94.0% of GDP) was checked against the September 2026 ONS release; OBR £123.9bn interest forecast was checked against the October 2026 EFO. Other values retain the source audit described above, not a universal recheck.
+- No claim is made that build success alone certifies responsive appearance, accessibility, privacy compliance or the accuracy of every historical / G20 item.
