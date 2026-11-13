@@ -37,6 +37,14 @@ export const App: React.FC = () => {
 
       {/* Main Content Area */}
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+        <div role="note" className="mb-5 flex flex-wrap items-center gap-x-3 gap-y-1 rounded-lg border border-slate-800 bg-slate-900/70 px-3 py-2 text-xs text-slate-300">
+          <span className="font-semibold text-slate-100">Financial data last reviewed: 13 November 2026</span>
+          <span className="hidden sm:inline text-slate-600" aria-hidden="true">|</span>
+          <span>Figures use the source release dates and financial periods shown in each section; official statistics may be revised.</span>
+          <button type="button" onClick={() => setIsAboutOpen(true)} className="text-blue-300 hover:text-blue-200 underline underline-offset-2">
+            Methodology &amp; sources
+          </button>
+        </div>
         {activeTab === 'overview' && (
           <OverviewTab
             setActiveTab={setActiveTab}
