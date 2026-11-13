@@ -10,12 +10,17 @@ export const DebtInterestTicker: React.FC<DebtInterestTickerProps> = ({ variant 
   const startTimeRef = useRef<number>(Date.now());
   const [sessionInterest, setSessionInterest] = useState<number>(0);
   const [todayInterest, setTodayInterest] = useState<number>(0);
+  const [cumulativeIllustratedInterest, setCumulativeIllustratedInterest] = useState<number>(0);
 
   useEffect(() => {
     const updateInterest = () => {
       const now = Date.now();
       const elapsedSeconds = Math.max(0, (now - startTimeRef.current) / 1000);
       setSessionInterest(elapsedSeconds * DEBT_INTEREST_METRICS.perSecond);
+      // Indicative accrued interest from the end-September ONS snapshot, not a live debt stock.
+      const forecastEnd = Date.parse('2027-04-01T00:00:00+01:00');
+      const interestSeconds = Math.max(0, Math.min(now, forecastEnd) - LATEST_ONS_NET_DEBT.interestStart) / 1000;
+      setCumulativeIllustratedInterest(interestSeconds * DEBT_INTEREST_METRICS.perSecond);
 
       // Reconstruct London midnight, including BST/GMT changes. Never use the visitor's time zone.
       const zoned = new Intl.DateTimeFormat('en-GB', {
@@ -53,7 +58,7 @@ export const DebtInterestTicker: React.FC<DebtInterestTickerProps> = ({ variant 
           <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
         </span>
         <span className="text-slate-300">ONS net debt ({LATEST_ONS_NET_DEBT.date}) <strong className="text-red-400">£{netDebtBillions}bn</strong></span>
-        <span className="text-slate-300">OBR forecast interest <strong className="text-amber-400">£{formatPounds(DEBT_INTEREST_METRICS.perSecond, 2)}/sec</strong> (average, not live cash flow)</span>
+        <span className="text-slate-300">Illustrated interest since 1 Oct 2026 <strong className="text-amber-400">£{formatPounds(cumulativeIllustratedInterest, 0)}</strong> (OBR average, not live cash flow)</span>
       </div>
     );
   }
@@ -131,11 +136,11 @@ export const DebtInterestTicker: React.FC<DebtInterestTickerProps> = ({ variant 
           <p className="break-words font-mono text-lg font-bold text-red-400">£{netDebtBillions}bn</p>
         </div>
         <div className="min-w-0 rounded-xl border border-slate-800 bg-slate-950 p-4">
-          <p className="text-sm text-slate-300">OBR 2026/27 interest forecast</p>
-          <p className="break-words font-mono text-lg font-bold text-amber-400">£{formatPounds(DEBT_INTEREST_METRICS.annualAmount / 1e9, 1)}bn</p>
+          <p className="text-sm text-slate-300">Illustrated interest since 1 October 2026</p>
+          <p className="break-words font-mono text-lg font-bold text-amber-400">£{formatPounds(cumulativeIllustratedInterest, 0)}</p>
         </div>
         <p className="text-xs text-slate-300 sm:col-span-2">
-          These figures cover different periods and are not additive. The animated interest counters illustrate the OBR annual forecast at a constant average rate; they are not real-time cash payments or an estimate of current national debt.
+          The debt stock is the published September 2026 snapshot. The moving interest figure uses a uniform daily average derived from the OBR 2026/27 forecast, starting on 1 October 2026 and ending on 31 March 2027. Do not add these figures to estimate current debt: the interest illustration is not real-time cash spending, and other debt movements are excluded.
         </p>
       </div>
 
