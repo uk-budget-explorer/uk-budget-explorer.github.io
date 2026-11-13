@@ -6,8 +6,7 @@ import {
   Clock, 
   Home, 
   Briefcase, 
-  ChevronDown, 
-  ChevronUp, 
+
   Sparkles, 
   ShieldCheck, 
   HeartPulse, 
@@ -22,7 +21,6 @@ export const PerPersonBudgetCalculator: React.FC = () => {
   const [householdSize, setHouseholdSize] = useState<number>(1);
   const [perspective, setPerspective] = useState<'resident' | 'taxpayer' | 'household'>('resident');
   const [timeframe, setTimeframe] = useState<'annual' | 'monthly' | 'daily'>('annual');
-  const [expandedSectorId, setExpandedSectorId] = useState<string | null>(null);
 
   // Demographic divisor:
   // - resident: 69.2563 Million UK population
@@ -60,10 +58,6 @@ export const PerPersonBudgetCalculator: React.FC = () => {
     if (timeframe === 'annual') return 'Per Year';
     if (timeframe === 'monthly') return 'Per Month';
     return 'Per Day';
-  };
-
-  const toggleSector = (id: string) => {
-    setExpandedSectorId(prev => (prev === id ? null : id));
   };
 
   return (
@@ -247,7 +241,6 @@ export const PerPersonBudgetCalculator: React.FC = () => {
 
         <div className="space-y-3">
           {UK_SPENDING_DATA.map((sector) => {
-            const isExpanded = expandedSectorId === sector.id;
             const sectorTotalGbp = sector.amount * 1_000_000_000;
             const perUnitCost = sectorTotalGbp / divisor;
             const itemCost = perspective === 'resident' ? perUnitCost * householdSize : perUnitCost;
@@ -259,8 +252,7 @@ export const PerPersonBudgetCalculator: React.FC = () => {
               >
                 {/* Sector Primary Row */}
                 <div
-                  className="p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 cursor-pointer"
-                  onClick={() => toggleSector(sector.id)}
+                  className="p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4"
                 >
                   {/* Left: Icon, Name, Category */}
                   <div className="flex items-center gap-4">
@@ -300,12 +292,7 @@ export const PerPersonBudgetCalculator: React.FC = () => {
                       </div>
                     </div>
 
-                    <button
-                      className="p-1.5 rounded-lg bg-slate-800 text-slate-300 hover:bg-slate-700 transition-colors"
-                      aria-label="Toggle Subprogram details"
-                    >
-                      {isExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
-                    </button>
+
                   </div>
                 </div>
 
@@ -317,50 +304,6 @@ export const PerPersonBudgetCalculator: React.FC = () => {
                   />
                 </div>
 
-                {/* Expanded Subprogram Breakdown per Person */}
-                {isExpanded && (
-                  <div className="p-5 bg-slate-950 border-t border-slate-800/80 space-y-4 animate-fadeIn">
-                    <div className="flex items-center justify-between">
-                      <h5 className="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
-                        <Sparkles className="w-3.5 h-3.5 text-blue-400" />
-                        Programme details (official figures not supplied for this function):
-                      </h5>
-                      <span className="text-[11px] text-slate-500">Calculated proportionately</span>
-                    </div>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                      {sector.breakdown.map((sub, idx) => {
-                        const subTotalGbp = sub.amount * 1_000_000_000;
-                        const subPerUnit = subTotalGbp / divisor;
-                        const subCost = perspective === 'resident' ? subPerUnit * householdSize : subPerUnit;
-
-                        return (
-                          <div
-                            key={idx}
-                            className="p-3 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-between gap-3"
-                          >
-                            <div className="truncate">
-                              <span className="text-xs font-semibold text-slate-200 block truncate">
-                                {sub.name}
-                              </span>
-                              <span className="text-[10px] text-slate-400 block truncate">
-                                {sub.description}
-                              </span>
-                            </div>
-                            <div className="text-right shrink-0">
-                              <span className="text-xs font-bold text-white font-mono block">
-                                {formatCurrency(subCost)}
-                              </span>
-                              <span className="text-[10px] text-slate-500 font-mono">
-                                £{sub.amount.toFixed(1)}bn
-                              </span>
-                            </div>
-                          </div>
-                        );
-                      })}
-                    </div>
-                  </div>
-                )}
               </div>
             );
           })}
