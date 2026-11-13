@@ -115,8 +115,13 @@ export const HistoricalTab: React.FC = () => {
               return (
                 <div
                   key={item.year}
+                  role="button"
+                  tabIndex={0}
+                  aria-label={`Inspect fiscal year ${item.year}: ${label}`}
+                  aria-pressed={isSelected}
+                  onKeyDown={event => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); setActiveYear(item); } }}
                   onClick={() => setActiveYear(item)}
-                  className="flex-1 flex flex-col items-center h-full justify-end group cursor-pointer relative"
+                  className="flex-1 flex flex-col items-center h-full justify-end group cursor-pointer relative focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue-400"
                 >
                   {/* Floating tooltip on hover */}
                   <div className="opacity-0 group-hover:opacity-100 transition-opacity absolute -top-8 bg-slate-800 text-[10px] text-white px-2 py-1 rounded shadow-lg whitespace-nowrap z-20 pointer-events-none border border-slate-700">
