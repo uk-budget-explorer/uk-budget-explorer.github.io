@@ -75,7 +75,7 @@ export const ConsentBanner: React.FC = () => {
   return (
     <div className="fixed inset-x-0 bottom-0 bg-slate-900 text-slate-100 p-4 border-t border-slate-700 flex flex-col md:flex-row items-center justify-between gap-4">
       <p className="text-sm max-w-md">
-        We use Google Analytics 4 to collect anonymous usage data that helps improve this site. No personal or financial information is sent.
+        With your permission, Google Analytics collects website usage information to help improve this site. See our privacy notice for details.
         <a href="/privacy.html" target="_blank" rel="noreferrer" className="ml-2 underline hover:text-white">Privacy notice</a>
       </p>
       <div className="flex gap-2">
