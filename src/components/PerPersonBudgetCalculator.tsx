@@ -105,7 +105,7 @@ export const PerPersonBudgetCalculator: React.FC = () => {
       </div>
 
       {/* Control Panel: Perspective + Household Size + Timeframe */}
-      <div className="p-6 rounded-2xl bg-slate-900 border border-slate-800 shadow-xl space-y-6">
+      <div className="print-hide p-6 rounded-2xl bg-slate-900 border border-slate-800 shadow-xl space-y-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* 1. Perspective Switcher */}
           <div className="space-y-2">
