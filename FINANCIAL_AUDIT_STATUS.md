@@ -2,7 +2,7 @@
 
 **Review date:** 13 November 2026  
 **Production branch:** `main`  
-**Release status:** **PUBLICLY DEPLOYED; BROAD PROMOTION PENDING FINAL BROWSER/PRINT AND SEARCH CONSOLE VERIFICATION**  
+**Release status:** **PUBLICLY DEPLOYED — continuous publication; outstanding accuracy, accessibility and search-indexing checks are tracked without taking the site offline.**  
 **Design:** Original React/Vite website retained; no visual redesign.
 
 ## Verified metrics and definitions
@@ -72,3 +72,12 @@
 - The July release's 2024/25 Total Managed Expenditure revision of +£4,796m is relative to July 2025, **not** the May 2026 site baseline. Do not apply it to the site's 2024/25 figures without an exact comparable source-date reconciliation.
 - **Editorial gate:** Before updating site figures, compare the July source workbook's nominal Table 4.2 or 5.4 functional amounts, revised 2024/25 totals and 2025/26 outturn with the May Table 9 entries on matched periods and definitions; recalculate shares and historical charts together, and preserve ONS/HMRC/OBR metric separation. This source-by-source numerical reconciliation remains OPEN.
 - Daily UK Budget Data Change Watch monitors ONS, HMRC, HMT and OBR official releases and flags consequential changes; it does not automatically deploy updates.
+
+## Continuous publication policy — 13 November 2026
+
+- The public site remains online as a dated statistical explorer. Do not defer public availability merely because newer revisions are anticipated.
+- Website-wide **Financial data last reviewed: 13 November 2026** is a fixed editorial review checkpoint, **not** a dynamic today's date or a claim that all underlying figures were published that day. Update only after an actual documented review.
+- Each chart/dataset must retain its own financial-year labels, source and publication vintage; do not call historical values live or imply forecast interest is actual accumulated debt.
+- A daily conditional UK Budget Data Change Watch checks ONS, HMRC, HMT and OBR and alerts for material changes. It does not edit code, reset review dates or deploy without verification.
+- When new official data arrive, record the affected periods/definitions, compare matched source vintages, update all dependent calculations, pass build and finance-audit tests, and deploy via GitHub Pages.
+- The site deliberately has no built-in download/print statement control; desktop/mobile and screen-reader validation and Google Search Console verification remain separate maintenance checks, not prerequisites for uptime.
