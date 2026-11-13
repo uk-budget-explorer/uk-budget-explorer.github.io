@@ -230,7 +230,7 @@ export const PerPersonBudgetCalculator: React.FC = () => {
         </div>
       </div>
 
-      <p className="rounded-xl border border-amber-700/50 bg-amber-950/20 p-4 text-xs text-amber-100 leading-relaxed">
+      <p className="print-explanation rounded-xl border border-amber-700/50 bg-amber-950/20 p-4 text-xs text-amber-100 leading-relaxed">
         Treasury's ten expenditure functions total £1,167.6bn before EU transactions in 2024/25,
         whereas the ONS Total Managed Expenditure measure used for the headline per-person figure is
         £1,290.348bn. The distinction reflects expenditure-on-services versus TME, accounting adjustments
@@ -245,7 +245,7 @@ export const PerPersonBudgetCalculator: React.FC = () => {
               Treasury Expenditure by Function (Excluding TME Adjustments)
             </h3>
             <p className="text-xs text-slate-400">
-              Illustrative expenditure per {perspectiveLabel.toLowerCase()} {getTimeframeLabel().toLowerCase()}; not the value of services actually used
+              Illustrative expenditure {perspectiveLabel.toLowerCase()} {getTimeframeLabel().toLowerCase()}; not the value of services actually used
             </p>
           </div>
           <button
@@ -268,15 +268,15 @@ export const PerPersonBudgetCalculator: React.FC = () => {
             return (
               <div
                 key={sector.id}
-                className="rounded-xl bg-slate-900 border border-slate-800 overflow-hidden hover:border-slate-700 transition-all shadow-md"
+                className="print-sector-card rounded-xl bg-slate-900 border border-slate-800 overflow-hidden hover:border-slate-700 transition-all shadow-md"
               >
                 {/* Sector Primary Row */}
                 <div
-                  className="p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 cursor-pointer"
+                  className="print-sector-main p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 cursor-pointer"
                   onClick={() => toggleSector(sector.id)}
                 >
                   {/* Left: Icon, Name, Category */}
-                  <div className="flex items-center gap-4">
+                  <div className="print-sector-identity flex items-center gap-4">
                     <div
                       className="w-11 h-11 rounded-xl flex items-center justify-center text-white shrink-0 shadow-md"
                       style={{ backgroundColor: `${sector.color}25`, color: sector.color }}
@@ -299,7 +299,7 @@ export const PerPersonBudgetCalculator: React.FC = () => {
                   </div>
 
                   {/* Right: Per Person Amount & Percentage */}
-                  <div className="flex items-center justify-between sm:justify-end gap-6 border-t sm:border-t-0 pt-3 sm:pt-0 border-slate-800">
+                  <div className="print-sector-value flex items-center justify-between sm:justify-end gap-6 border-t sm:border-t-0 pt-3 sm:pt-0 border-slate-800">
                     <div className="text-left sm:text-right">
                       <div className="text-lg sm:text-xl font-black text-white font-mono">
                         {formatCurrency(itemCost)}
