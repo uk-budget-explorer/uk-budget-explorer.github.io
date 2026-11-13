@@ -251,7 +251,7 @@ export const PerPersonBudgetCalculator: React.FC = () => {
           <button
             onClick={() => window.print()}
             aria-label="Print or save the current illustrative spending statement as PDF"
-            className="print-hide "px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold border border-slate-700 transition-colors flex items-center gap-1.5"
+            className="print-hide px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold border border-slate-700 transition-colors flex items-center gap-1.5"
           >
             <Download className="w-3.5 h-3.5" />
             <span>Print / Save Statement</span>
