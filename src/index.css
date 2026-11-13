@@ -24,3 +24,25 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #475569;
 }
+
+/* Print only the selected personal spending statement, without navigation or sticky tickers. */
+@media print {
+  @page { size: A4 portrait; margin: 14mm; }
+  html, body, #root { background: #fff !important; color: #111827 !important; height: auto !important; }
+  body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  #root * { visibility: hidden !important; }
+  .print-statement, .print-statement * { visibility: visible !important; }
+  .print-statement { position: absolute !important; top: 0; left: 0; width: 100% !important; margin: 0 !important; padding: 0 !important; color: #111827 !important; }
+  .print-statement .print-hide, .print-statement .print-hide * { display: none !important; }
+  .print-statement .print-report-heading { display: block !important; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #aaa; }
+  .print-report-heading h1 { font-size: 18pt; font-weight: 700; }
+  .print-report-heading p { font-size: 10pt; margin-top: 5px; }
+  .print-statement, .print-statement * { text-shadow: none !important; box-shadow: none !important; }
+  .print-statement .text-white, .print-statement .text-slate-100, .print-statement .text-slate-200, .print-statement .text-slate-300, .print-statement .text-slate-400, .print-statement .text-slate-500 { color: #111827 !important; }
+  .print-statement [class*="bg-slate"], .print-statement [class*="bg-amber"], .print-statement [class*="bg-emerald"] { background: white !important; }
+  .print-statement [class*="border-"] { border-color: #d1d5db !important; }
+  .print-statement > div, .print-statement [class*="rounded-xl"], .print-statement [class*="rounded-2xl"] { break-inside: avoid; page-break-inside: avoid; }
+  .print-statement .grid { display: block !important; }
+  .print-statement .grid > * { margin-bottom: 8px !important; }
+  .print-statement input, .print-statement button { display: none !important; }
+}
