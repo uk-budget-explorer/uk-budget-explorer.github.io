@@ -55,9 +55,11 @@ export const ConsentBanner: React.FC = () => {
   };
 
   const change = () => {
+    // Reload after clearing consent so any previously loaded analytics scripts cease running.
     localStorage.removeItem("gaConsent");
     (window as any).gaConsent = null;
-    setConsent(null);
+    (window as any)['ga-disable-G-8SP4GE7VJW'] = true;
+    window.location.reload();
   };
 
   if (consent !== null) {
