@@ -237,8 +237,30 @@ export const PerPersonBudgetCalculator: React.FC = () => {
         and data vintages. The function cards do not purport to allocate every pound of TME.
         Per-person values are arithmetical averages, not entitlements or actual individual usage.
       </p>
+      {/* Print uses a compact semantic table rather than interactive screen cards. */}
+      <section className="print-only-summary" aria-label="Printed Treasury expenditure summary">
+        <h2>Treasury Expenditure by Function — 2024/25</h2>
+        <p>Illustrative expenditure {perspectiveLabel.toLowerCase()} {getTimeframeLabel().toLowerCase()}; amounts are averages, not individual entitlements.</p>
+        <table>
+          <thead><tr><th scope="col">Treasury function</th><th scope="col">Total UK spending</th><th scope="col">Illustrative share</th></tr></thead>
+          <tbody>
+            {UK_SPENDING_DATA.map(sector => {
+              const perUnit = sector.amount * 1_000_000_000 / divisor;
+              const amount = perspective === 'resident' ? perUnit * householdSize : perUnit;
+              return (
+                <tr key={sector.id}>
+                  <th scope="row"><strong>{sector.name}</strong><span>{sector.description}</span></th>
+                  <td>£{sector.amount.toFixed(1)}bn</td>
+                  <td>{formatCurrency(amount)}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+        <p>Source: HM Treasury Public Spending Statistics, May 2026, Table 9. Functional spending totals do not equal ONS Total Managed Expenditure.</p>
+      </section>
       {/* Itemized Sector Split Table / Cards */}
-      <div className="space-y-4">
+      <div className="space-y-4 print-hide">
         <div className="flex items-center justify-between">
           <div>
             <h3 className="text-lg font-bold text-white">
