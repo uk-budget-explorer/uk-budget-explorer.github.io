@@ -78,6 +78,24 @@ export const OverviewTab: React.FC<OverviewTabProps> = ({ setActiveTab, onSelect
         </div>
       </div>
 
+      {/* Debt feature introduction: visible content for users and search-engine indexing. */}
+      <section aria-labelledby="national-debt-calculator-title" className="rounded-xl border border-slate-800 bg-slate-900/70 p-4 sm:p-5">
+        <h2 id="national-debt-calculator-title" className="text-lg sm:text-xl font-bold text-white">
+          UK National Debt Calculator &amp; Debt Interest Counter
+        </h2>
+        <p className="mt-2 text-sm text-slate-300 leading-relaxed">
+          How much is UK national debt, and what does government borrowing cost in interest?
+          Compare the latest published ONS public sector net debt figure shown below with an interactive
+          illustration of debt interest per second, minute, hour and day using the OBR's 2026/27 forecast.
+          The moving calculation is an illustrative average, <strong>not</strong> a real-time national debt balance
+          or observed interest payments.
+        </p>
+        <p className="mt-2 text-xs text-slate-400">
+          Official debt stock: ONS September 2026 (provisional). Forecast interest: OBR 2026/27.
+          Financial data last reviewed 13 November 2026; sources and definitions are available under Methodology &amp; Sources.
+        </p>
+      </section>
+
       {/* Real-Time Debt Interest Live Ticker Widget */}
       <DebtInterestTicker variant="full" />
 
