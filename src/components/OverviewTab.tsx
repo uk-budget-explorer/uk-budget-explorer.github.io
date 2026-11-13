@@ -96,6 +96,13 @@ export const OverviewTab: React.FC<OverviewTabProps> = ({ setActiveTab, onSelect
         </p>
       </section>
 
+      <div className="flex flex-wrap items-center gap-3">
+        <a href="/national-debt/" className="inline-flex items-center gap-2 rounded-lg border border-blue-500/40 bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-500 transition-colors">
+          Open dedicated National Debt Calculator <ArrowRight className="w-4 h-4" />
+        </a>
+        <span className="text-xs text-slate-400">Shareable, indexed page with official sources and debt-interest explanations</span>
+      </div>
+
       {/* Real-Time Debt Interest Live Ticker Widget */}
       <DebtInterestTicker variant="full" />
 
