@@ -83,39 +83,6 @@ export const SpendingDetailModal: React.FC<SpendingDetailModalProps> = ({ item, 
             </p>
           </div>
 
-          {/* Detailed Sub-Programs */}
-          <div>
-            <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3 flex items-center gap-1.5">
-              <Sparkles className="w-3.5 h-3.5 text-blue-400" />
-              Sub-Programs & Departmental Budget Breakdown
-            </h4>
-            <div className="space-y-2.5">
-              {item.breakdown.map((sub, idx) => (
-                <div key={idx} className="p-3 rounded-lg bg-slate-950 border border-slate-800/80 space-y-1.5">
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs font-semibold text-slate-200">{sub.name}</span>
-                    <span className="text-xs font-bold text-white bg-slate-800 px-2 py-0.5 rounded border border-slate-700">
-                      £{sub.amount.toFixed(1)}bn
-                    </span>
-                  </div>
-                  <p className="text-[11px] text-slate-400 leading-relaxed">{sub.description}</p>
-                  <div className="flex items-center gap-2 pt-1 text-[10px] text-slate-500">
-                    <div className="flex-1 h-1 bg-slate-800 rounded-full overflow-hidden">
-                      <div
-                        className="h-full rounded-full"
-                        style={{
-                          width: `${(sub.amount / item.amount) * 100}%`,
-                          backgroundColor: item.color
-                        }}
-                      />
-                    </div>
-                    <span>{((sub.amount / item.amount) * 100).toFixed(0)}% of this sector</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
           {/* Key Facts */}
           <div className="p-4 rounded-xl bg-blue-950/20 border border-blue-900/40 space-y-2">
             <h4 className="text-xs font-bold text-blue-300 uppercase tracking-wide">
